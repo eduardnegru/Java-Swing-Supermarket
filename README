@@ -1,0 +1,51 @@
+Negru Adrian Eduard 322CC
+Grad de dificultate: 7
+Timp alocat: 2 saptamani
+ 
+
+
+	Atunci cand citesc produsele magazinului din fisier creez un TreeMap in clasa ProductMap care va asocia fiecarui 
+ID un item si care va contine toate produsele disponibile in magazin. Clasa ProductMap foloseste design patternul Singleton
+pentru ca vreau sa creez acest treemap doar atunci cand citesc din fisier. Clientii ii introduc intr-un hashmap in care asociez 
+numele fiecarui client cu un obiect de tip Customer. 
+
+	Atat produsee din WishList cat si din ShoppingCart le modelez printr-o lista dublu inlantuita implementata in 
+ItemList avand elemente de tip Item. Nodul listei il implementez prin clasa Node<Item> cu 3 campuri (next, previous si 
+item) si un constructor. Functiile sunt similare cu implementarea din C.
+
+	Cand adaug in WishList sau ShoppingCart folosesc functia add din ItemList ( ambele sunt subclasele lui ItemList). Daca
+adaug in shiopping cart un element deja existent in wishlist, il sterg din wishlist si verific daca mai exista elemente in 
+wishlist din departamentul din care facea parte produsul sters. Daca nu mai exista inseamna ca clientul respectiv nu mai trebuie
+sa fie observator petru departamentul resepectiv.
+	Cand sterg un element din shopping cart cresc bugetul cu valoarea produsului sters, iar cand il sterg din wishlist 
+verific daca mai exista produse din acel departament in wishlist.
+	Cand adaug/sterg/modific un produs din magazin il adaug/sterg/modific din clasa Store si din TreeMapul din clasa ProductMap
+si notific toti observatorii.
+	NotifyAllObservers din clasa Department notifica toti observatorii acelui departament apeland functia update. In update
+adaug fiecarui client notificarea primita in lista de notificari si in functie de acesta aduc modificari asupra cosului de cumparaturi
+sau listei de dorinte. Cand modific pretul unui produs din shoppingcart modific si bugetul cu diferenta dintre pretul vechi si pretul nou.
+Cand sterg un produs care se afla in shopping cart il sterg din cosul de cumparaturi si cresc bugetul cu pretul produsului sters. Daca acesta
+se afla si in wishlist verific daca stergerea acestuia trebuie sa scoada din lista de observatori clientul respectiv.
+	Cand un customer primeste accept se apeleaza metoda accept din fiecare departament care apeleaza metoda visit implementata in functie
+de vizitator in clasa ShoppingCart. Aceste functii produc anumite reduceri/modificari pentru cosul de cumparatori sau 
+bugetul clientilor care primesc accept.
+	GetItem returneaza un anumit item din wishlist in functie de strategiile pe care fiecare client le are. Pentru fiecare strategie sortez
+lista de dorinte in functie de pret, alfabetic si in functie de indexul cu care a fost adaugat. Atunci cand aflu itemul il sterg din wishlist,
+verific daca mai exista elemente din departamentul respectiv in wishlist( pentru a sterge, eventual, clientul din lista de observatori) si apoi
+il introduc in cosul de cumparaturi.
+	Pentru functiile getItems, getNotifications, get Observers afisez pur si simplu listele asociate.
+	In implementarea interfetei grafice am folosit CardLayout pentru a putea selecta un anumit panel foarte usor si pentru a putea avea un 
+buton de back. Am folosit paneluri pentru a organiza elementele in pagina. Am folosit BoxLayout pentru a organiza elementele una sub alta si 
+FlowLayout pentru a le pune secvential pe orizontala. Am folosit butoane cu imagini. Imaginile nu sunt facute de mine, ci sunt downloadate de pe 
+site-ul https://icons8.com/android-icons/. 
+	Initial trebuie selectate fisierele store.txt si customers.txt. Pentru acest lucru am folosit un filechooser. Elementele din shopping cart
+si wish list sunt puse intr-un JTable, iar lista cu clienti intr-un JList. Administratorul are access la lista tuturor produselor, generate din 
+TreeMap-ul din ProductMap. Acesta poate sa acceseze si departamentele. Fiecare departament reprezinta un tab, iar fiecare tab contine 2 liste JList
+cu observatori si clienti si niste statistici ( produsul din acel departament care apare cel mai des in cosul de cumparaturi/ wishlistul clientilor.
+si produsul cel mai scump din fiecare departament). Pentru a afla produsul care apare cel mai des am creeat o lista in care se afla toate 
+produsele din shoppincart/ wishlist de la fiecare client si un hashmap care asociaza un id si numarul de aparitii ( initial = 0) pentru fiecare item.
+Trec prin fiecare element al acestei liste si incrementez la fiecare aparitie. ( put suprascrie/actualizeaza valoarea anteroara ). Iau elementul cu
+numar maxim de aparitii si apelez getKey pentru a afla ID-ul itemului.
+	Pentru a edita un element din lista de produse trebuie sa selectati un camp pe care vreti sa il modificati introduceti noua valoare si produsul
+se modifica. 
+ 	 
